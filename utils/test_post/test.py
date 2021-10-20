@@ -28,10 +28,23 @@ def goals(municipality):
 	print(json.dumps(parsed, indent = 4))
 
 def similar(municipality):
-	req = requests.post(URL + "/municipality/similar", json={ 'municipality': municipality })
+	req = requests.get(URL + "/municipality/similar/" + municipality)
 	print(req.status_code, req.reason)
 	parsed = json.loads(req.text)
 	print(json.dumps(parsed, indent = 4))
+
+def muni_info(muni):
+	req = requests.get(URL + "/municipality/info/" + municipality)
+	print(req.status_code, req.reason)
+	parsed = json.loads(req.text)
+	print(json.dumps(parsed, indent = 4))
+
+def available_years(muni):
+	req = requests.get(URL + "/data/available-years/" + municipality)
+	print(req.status_code, req.reason)
+	parsed = json.loads(req.text)
+	print(json.dumps(parsed, indent = 4))
+
 
 # body = login(sys.argv[1], sys.argv[2])
 #print("Some correlated kpis:")
@@ -50,4 +63,5 @@ municipality = cities[sys.argv[1]]
 #print("Goals:")
 # goals(municipality)
 
-similar(municipality)
+# muni_info(municipality)
+available_years(municipality)

@@ -8,6 +8,7 @@ export default async (
   isDummy: boolean,
 ): Promise<any> => {
   const query = deleteGDCGoal(municipality, kpi, dataseries, isDummy);
-  const resp = await DB.update(query, { transform: 'toJSON' });
-  return resp;
+  return DB.update(query, { transform: 'toJSON' }).catch((err) => {
+    console.log(err);
+  });
 };
