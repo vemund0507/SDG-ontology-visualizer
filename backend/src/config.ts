@@ -1,6 +1,8 @@
 import dotenv from 'dotenv-safe';
 
-dotenv.config();
+dotenv.config({
+  allowEmptyValues: true,
+});
 
 const PORT = process.env.PORT || 3001;
 
@@ -11,4 +13,5 @@ export default {
   GRAPHDB_USERNAME: process.env.GRAPHDB_USERNAME,
   GRAPHDB_PASSWORD: process.env.GRAPHDB_PASSWORD,
   GRAPHDB_CONTEXT_TEST: process.env.GRAPHDB_CONTEXT_TEST,
+  JWT_SECRET_TOKEN: process.env.JWT_SECRET_TOKEN,
 };

@@ -15,9 +15,10 @@
     /* Advanced Options */
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "typeRoots": [ "./src/types", "./node_modules/@types"]
+    "typeRoots": [ "./src/types", "./node_modules/@types"],
+    "downlevelIteration": true,
   },
-  "lib": ["es2015"],
+  "lib": ["es2015", "es6"],
   "include": ["src/**/*", "decs.d.ts"],
   "exclude": ["node_modules", "typings"]
 }
