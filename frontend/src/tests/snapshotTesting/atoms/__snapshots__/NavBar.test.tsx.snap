@@ -13,7 +13,7 @@ exports[`renders when there are no items 1`] = `
         href="/"
         onClick={[Function]}
       >
-        SDG-Ontology.no
+        sdgqa.trondheim.kommune.no
       </a>
     </h1>
   </div>
@@ -30,6 +30,22 @@ exports[`renders when there are no items 1`] = `
         onClick={[Function]}
       >
         Goal Distance Computation
+      </a>
+    </h1>
+  </div>
+  <div
+    className="css-17xejub"
+  />
+  <div
+    className="css-0"
+  >
+    <h1>
+      <a
+        className="chakra-link css-12dxqd"
+        href="/gdc/data"
+        onClick={[Function]}
+      >
+        Data Upload
       </a>
     </h1>
   </div>
