@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React, { PureComponent } from 'react';
 import { Heading, Stack, Container, Table, Tr, Td, Th, Thead, Tbody, Text } from '@chakra-ui/react';
 import {
