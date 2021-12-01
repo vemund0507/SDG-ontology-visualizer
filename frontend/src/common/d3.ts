@@ -63,6 +63,10 @@ export const changeColorBasedOnType = (type: string) => {
   if (type.includes('Trippel bunnlinje')) nodeColor = '#68D391';
   if (type.includes('Delmål')) nodeColor = '#FBD38D';
   if (type.includes('Utviklingsområde')) nodeColor = '#FC8181';
+  if (type.includes('Kategori')) nodeColor = '#00BB00';
+  if (type.includes('U4SSC KPI')) nodeColor = '#F4A460';
+  if (type.includes('U4SSC KPI') && type.includes('Utviklingsområde')) nodeColor = '#ABB2B9';
+
   return nodeColor;
 };
 export const mapNodeToGraphNodeAtDefaultPosition =

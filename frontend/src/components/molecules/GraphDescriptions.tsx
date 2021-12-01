@@ -20,6 +20,8 @@ const GraphDescriptions: React.FC<GraphDescriptionsProps> = ({ float }: GraphDes
     <GraphNodeKey description="Delmål til bærekraftsmål" />
     <GraphNodeKey description="Trippel bunnlinje" />
     <GraphNodeKey description="Utviklingsområde" />
+    <GraphNodeKey description="Kategori" />
+    <GraphNodeKey description="U4SSC KPI" />
   </Stack>
 );
 
