@@ -57,6 +57,7 @@ export const makePredicateUnique = (ontology: Ontology): Ontology => ({
     id: ontology.Predicate.id + ontology.Subject.id + ontology.Object.id,
   },
 });
+
 export const changeColorBasedOnType = (type: string) => {
   let nodeColor = '#63B3ED';
   if (type.includes('SDG')) nodeColor = '#D6BCFA';
@@ -65,8 +66,10 @@ export const changeColorBasedOnType = (type: string) => {
   if (type.includes('Utviklingsområde')) nodeColor = '#FC8181';
   if (type.includes('Kategori')) nodeColor = '#00BB00';
   if (type.includes('U4SSC KPI')) nodeColor = '#F4A460';
+  // in order for the following line to work, nodes need accept being of multiple types.
   if (type.includes('U4SSC KPI') && type.includes('Utviklingsområde')) nodeColor = '#ABB2B9';
-
+  if (type.includes('Direktørområde')) nodeColor = '#00A3A3';
+  if (type.includes('Enhetsområde')) nodeColor = '#00D1D1';
   return nodeColor;
 };
 export const mapNodeToGraphNodeAtDefaultPosition =
