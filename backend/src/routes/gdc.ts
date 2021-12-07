@@ -57,6 +57,42 @@ const getGoalDistance = async (req: Request, res: Response) => {
   }
 };
 
+const areGoalsAttained = async (req: Request, res: Response) => {
+  try {
+    const year = parseInt(req.params.year, 10);
+
+    const dataseriesPromise = getGDCDataSeries(req.params.municipality, year);
+    const goalPromise = getGDCGoals(req.params.municipality, req.params.municipality, 'absolute');
+    const historicalPromise = getGDCDataSeriesUpto(req.params.municipality, year);
+
+    // It should be more efficient to wait on all promises at the same time.
+    const data = await Promise.all([dataseriesPromise, goalPromise, historicalPromise]);
+    const dataseries: Dataseries[] = data[0];
+    const goals: Goal[] = data[1];
+    const historicalData: Dataseries[] = data[2];
+
+    if (!dataseries || !goals || !historicalData) {
+      throw new ApiError(400, 'Missing goals, data or historical data for municipality.');
+    }
+
+    const gdcOutput: GDCOutput = computeGDC(dataseries, goals, historicalData);
+
+    const attainalMap = new Map<string, boolean>();
+    gdcOutput.indicators.forEach((v) => {
+      let val = v.willCompleteBeforeDeadline;
+      // reduce dataseries to kpis
+      const existing = attainalMap.get(v.kpi);
+      if (existing !== undefined) {
+        val = val && existing;
+      }
+      attainalMap.set(v.kpi, val);
+    });
+    res.json(...attainalMap);
+  } catch (e: any) {
+    onError(e, req, res);
+  }
+};
+
 const setGoal = async (req: Request, res: Response) => {
   try {
     const isDummy = req.body.isDummy !== undefined && JSON.parse(req.body.isDummy);
@@ -325,7 +361,7 @@ router.post('/set-goal', verifyDatabaseAccess, verifyToken, setGoal);
 router.post('/set-bulk-goals', verifyDatabaseAccess, verifyToken, setBulkGoals);
 router.get('/goals/:municipality', verifyDatabaseAccess, getGoals);
 router.get('/correlated-kpis/:indicator', verifyDatabaseAccess, correlatedKPIs);
-
+router.get('/get-attained-goals/:municipality/:year', verifyDatabaseAccess, areGoalsAttained);
 router.post('/upload', verifyToken, verifyDatabaseAccess, upload.single('csv'), goalUploadCSV);
 
 export default router;
