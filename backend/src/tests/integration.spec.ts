@@ -90,11 +90,10 @@ describe('Insertion test with valid values', () => {
     expect(response.status).equal(200);
   });
   it('returns the inserted values', async () => {
-    const response = await agent.post('/api/data/get').send({
-      indicator: 'EC: ICT: ICT: 1C',
-      municipality: 'no.5001',
-      year: 2020,
-    });
+    const indicator = 'EC: ICT: ICT: 1C';
+    const municipality = 'no.5001';
+    const year = 2020;
+    const response = await agent.get(`/api/data/get/${municipality}/${year}/${indicator}`);
 
     expect(response.status).equal(200);
     expect(response.body).not.eq({});

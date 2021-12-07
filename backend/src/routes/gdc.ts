@@ -28,13 +28,17 @@ const router = Router();
 const getGoalDistance = async (req: Request, res: Response) => {
   try {
     const goalMunicipality =
-      req.body.goalOverride !== undefined ? req.body.goalOverride : req.body.municipality;
+      req.params.goalOverride !== undefined ? req.params.goalOverride : req.params.municipality;
 
-    const overrideMode = req.body.overrideMode !== undefined ? req.body.overrideMode : 'absolute';
+    const overrideMode =
+      req.params.overrideMode !== undefined ? req.params.overrideMode : 'absolute';
 
-    const dataseriesPromise = getGDCDataSeries(req.body.municipality, req.body.year);
-    const goalPromise = getGDCGoals(goalMunicipality, req.body.municipality, overrideMode);
-    const historicalPromise = getGDCDataSeriesUpto(req.body.municipality, req.body.year);
+    const year = parseInt(req.params.year, 10);
+    if (Number.isNaN(year)) throw new ApiError(400, 'Non-integer year');
+
+    const dataseriesPromise = getGDCDataSeries(req.params.municipality, year);
+    const goalPromise = getGDCGoals(goalMunicipality, req.params.municipality, overrideMode);
+    const historicalPromise = getGDCDataSeriesUpto(req.params.municipality, year);
 
     // It should be more efficient to wait on all promises at the same time.
     const data = await Promise.all([dataseriesPromise, goalPromise, historicalPromise]);
@@ -312,7 +316,11 @@ const goalUploadCSV = async (req: Request, res: Response) => {
   }
 };
 
-router.post('/get', verifyDatabaseAccess, getGoalDistance);
+router.get(
+  '/compute/:municipality/:year/:goalOverride?/:overrideMode?',
+  verifyDatabaseAccess,
+  getGoalDistance,
+);
 router.post('/set-goal', verifyDatabaseAccess, verifyToken, setGoal);
 router.post('/set-bulk-goals', verifyDatabaseAccess, verifyToken, setBulkGoals);
 router.get('/goals/:municipality', verifyDatabaseAccess, getGoals);

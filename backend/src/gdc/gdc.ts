@@ -88,9 +88,8 @@ export const computeGDC = (
     const isVariant = hist.dataseries !== undefined;
     const displayKPI = hist.kpi + (isVariant ? ` - ${hist.dataseries}` : '');
 
-    let score: IndicatorScore | IndicatorWithoutGoal | undefined = outputIndicatorScores.get(
-      displayKPI,
-    );
+    let score: IndicatorScore | IndicatorWithoutGoal | undefined =
+      outputIndicatorScores.get(displayKPI);
     if (score === undefined) {
       // Did not get score from indicators with goals, try the ones without goals instead...
       score = indicatorsWithoutGoals.get(displayKPI);
