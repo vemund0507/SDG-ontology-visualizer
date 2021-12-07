@@ -96,7 +96,10 @@ const insertBulkData = async (req: Request, res: Response) => {
 
 const getData = async (req: Request, res: Response) => {
   try {
-    const data = await getDataSeries(req.body.indicator, req.body.municipality, req.body.year);
+    const year = parseInt(req.params.year, 10);
+    if (Number.isNaN(year)) throw new ApiError(400, 'Non-integer year');
+
+    const data = await getDataSeries(req.params.indicator, req.params.municipality, year);
     res.json(data);
   } catch (e: any) {
     onError(e, req, res);
@@ -110,7 +113,7 @@ const getData = async (req: Request, res: Response) => {
  */
 const getAllData = async (req: Request, res: Response) => {
   try {
-    let data = await getDataSeriesForMunicipality(req.body.municipality);
+    let data = await getDataSeriesForMunicipality(req.params.municipality);
 
     // Group by kpiNumber and then potentially dataseriesVariant
     // Also removes all properties but value and year from the datapoints themselves
@@ -242,8 +245,8 @@ const dataUploadCSV = async (req: Request, res: Response) => {
 
 router.post('/insert', verifyDatabaseAccess, verifyToken, insertData);
 router.post('/insert-bulk', verifyDatabaseAccess, verifyToken, insertBulkData);
-router.post('/get', verifyDatabaseAccess, getData);
-router.post('/get-all-dataseries', verifyDatabaseAccess, getAllData);
+router.get('/get/:municipality/:year/:indicator', verifyDatabaseAccess, getData);
+router.get('/get-all-dataseries/:municipality', verifyDatabaseAccess, getAllData);
 
 router.get('/available-years/:municipality', verifyDatabaseAccess, availableYears);
 
