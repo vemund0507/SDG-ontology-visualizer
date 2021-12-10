@@ -87,7 +87,7 @@ const areGoalsAttained = async (req: Request, res: Response) => {
       }
       attainalMap.set(v.kpi, val);
     });
-    res.json(...attainalMap);
+    res.json([...attainalMap]);
   } catch (e: any) {
     onError(e, req, res);
   }
@@ -347,7 +347,7 @@ const goalUploadCSV = async (req: Request, res: Response) => {
     await bulkInsertGDCGoals(municipality, goals);
 
     res.json({});
-  } catch (e) {
+  } catch (e: any) {
     onError(e, req, res);
   }
 };
