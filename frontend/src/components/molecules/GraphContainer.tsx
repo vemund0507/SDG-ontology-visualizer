@@ -14,6 +14,7 @@ const GraphContainer: React.FC = () => {
   const [showSubgoals, setShowSubgoals] = useState<boolean>(false);
   const [unlockNodes, setUnlockNodes] = useState<boolean>(false);
   const [edgeLabelsVisible, setEdgeLabelsVisible] = useState<boolean>(true);
+  const [kpiAttainedToggle, setKPIAttained] = useState<boolean>(false);
   const { isFullscreen } = useSelector((state: RootState) => state.fullscreenStatus);
   const { correlationFilter } = useSelector((state: RootState) => state.ontology);
 
@@ -28,6 +29,14 @@ const GraphContainer: React.FC = () => {
     },
     [showSubgoals],
   );
+
+  // const kpiToggle = useCallback(
+  //   (node: GraphNode): boolean => {
+  //     if (!isSubgoal(node)) return false;
+  //     return true;
+  //   },
+  //   [kpiAttainedToggle],
+  // );
 
   const edgeFilter = useCallback(
     (edge: D3Edge | GraphEdge): boolean => {
@@ -55,11 +64,13 @@ const GraphContainer: React.FC = () => {
         onSubgoalFilter={filterSubgoals}
         onUnlockNodes={setUnlockNodes}
         onEdgeLabelsVisible={setEdgeLabelsVisible}
+        onKPIAttainedGoals={setKPIAttained}
       />
       <Flex h="100%" justify="space-between">
         <Graph
           nodeFilter={nodeFilter}
           edgeFilter={edgeFilter}
+          kpiToggle={kpiAttainedToggle}
           unlockAllNodes={unlockNodes}
           edgeLabelsVisible={edgeLabelsVisible}
         />

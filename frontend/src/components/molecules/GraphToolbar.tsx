@@ -10,12 +10,14 @@ type GraphToolBarProps = {
   onSubgoalFilter: () => void;
   onUnlockNodes: React.Dispatch<React.SetStateAction<boolean>>;
   onEdgeLabelsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  onKPIAttainedGoals: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const GraphToolBar: React.FC<GraphToolBarProps> = ({
   onSubgoalFilter,
   onUnlockNodes,
   onEdgeLabelsVisible,
+  onKPIAttainedGoals,
 }: GraphToolBarProps) => {
   const { isFullscreen } = useSelector((state: RootState) => state.fullscreenStatus);
 
@@ -40,6 +42,14 @@ const GraphToolBar: React.FC<GraphToolBarProps> = ({
           onChange={() => onEdgeLabelsVisible((current) => !current)}
         >
           Vis kanttekst
+        </Checkbox>
+        <Checkbox
+          colorScheme="cyan"
+          color="white"
+          size="md"
+          onChange={() => onKPIAttainedGoals((current) => !current)}
+        >
+          KPI oversikt
         </Checkbox>
       </HStack>
       <CorrelationDropdown isPositive />

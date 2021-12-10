@@ -78,6 +78,7 @@ export default class {
   private edgeFilter: GraphEdgeFilter;
   private nodeMenu?: d3.Selection<SVGGElement, GraphNode, null, undefined>;
   private edgeLabelsVisible = true;
+  private kpiToggle = false;
 
   constructor(
     svg: SVGSVGElement,
@@ -233,6 +234,9 @@ export default class {
   private drawGraph = () => {
     this.drawEdges();
     this.drawNodes();
+    // this.toggleKPIAttainedGoals(this.kpiToggle);
+    console.log('draw graph');
+
     this.scaleGraph();
 
     this.forceSimulation.on('tick', () => {
@@ -350,9 +354,29 @@ export default class {
     }
   };
 
+  // private updateKPIToggle = () => {
+  //   if (this.kpiToggle) {
+  //     this.nodeSvg
+  //       .selectAll(nodeClassName)
+  //       .data(this.nodes)
+  //       .attr('fill', (node) => common.updateColorKPI(node.type, this.kpiToggle));
+  //     console.log('Toggle on');
+  //     console.log(this.nodeSvg);
+  //   } else console.log('Toggle off');
+  //   return this.nodeSvg;
+  // };
+
   toggleEdgeLabelsVisibility = (toggle: boolean) => {
     this.edgeLabelsVisible = toggle;
     this.drawEdgeLabels();
+  };
+
+  toggleKPIAttainedGoals = (toggle: boolean) => {
+    this.kpiToggle = toggle;
+    console.log('toggle func', toggle);
+
+    // this.drawNodes();
+    this.redrawGraphWithFilter();
   };
 
   drawEdgeLabels = () => {
@@ -380,15 +404,18 @@ export default class {
       .data(this.nodes, (node) => (node as GraphNode).id)
       .join((enter) => {
         const g = enter.append('g');
+
         g.append('circle')
           .attr('r', nodeRadius)
-          .attr('fill', (node) => common.changeColorBasedOnType(node.type))
+          // The following line will not be called when redrawing th graph...
+          .attr('fill', (node) => common.updateColorKPI(node.type, this.kpiToggle))
           .attr('stroke', '#aaa')
           .on('click', (event: PointerEvent, node) => {
             if (!event.target) return;
             const menu = (event.target as SVGElement).parentNode as SVGGElement;
             this.showNodeMenu(node, d3.select(menu));
           });
+
         // Lock icon. The icon is always in the DOM, just with 0 opacity when hidden, to prevent unnecessary loading
         // of files and because otherwise the whole DOM would be scanned when toggling a single node's position.
         g.append('image')
@@ -426,6 +453,7 @@ export default class {
                 .attr('dominant-baseline', 'mathematical');
             }
           });
+        console.log('draw nodes');
 
         return g;
       })
@@ -531,6 +559,7 @@ export default class {
     this.removeDisconnectedEdges();
     this.resetForceSimulation();
     this.drawGraph();
+    console.log('redraw');
   };
 
   // ############################################
