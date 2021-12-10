@@ -85,6 +85,18 @@ export const getGDCOutput = async (
   }
 };
 
+export const getAreGoalsAttained = async (
+  municipality: string,
+  year: number,
+): Promise<Map<string, boolean>> => {
+  try {
+    const path = `gdc/get-attained-goals/${municipality}/${year}`;
+    return await api.GET(path).then((data) => new Map<string, boolean>(data));
+  } catch (e) {
+    return new Map<string, boolean>();
+  }
+};
+
 export const getCorrelatedKPIs = async (kpi: string): Promise<CorrelatedKPI[]> => {
   try {
     const data: CorrelatedKPI[] = await api.GET(`gdc/correlated-kpis/${kpi}`);
