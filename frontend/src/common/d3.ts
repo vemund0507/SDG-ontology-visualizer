@@ -21,6 +21,12 @@ export const removeDuplicates = <T extends UniqueObject>(
   self: T[],
 ): boolean => index === self.findIndex((n) => node.id === n.id);
 
+export const removeUndefinedTypes = <H extends GraphNode>(node: H): boolean => {
+  console.log(node.type);
+  // console.log(node);
+  return !node.type.includes('SDGTargetCorrelation');
+};
+
 export const mergeParallelEdges = (
   edge: GraphEdge | D3Edge,
   _: number,
@@ -71,18 +77,15 @@ export const changeColorBasedOnType = (type: string) => {
   if (type.includes('Kategori')) nodeColor = '#00BB00';
   if (type.includes('U4SSC KPI')) nodeColor = '#F4A460';
   // in order for the following line to work, nodes need accept being of multiple types.
-  if (type.includes('U4SSC KPI') && type.includes('Utviklingsområde')) nodeColor = '#ABB2B9';
+  // if (type.includes('U4SSC KPI') && type.includes('Utviklingsområde')) nodeColor = '#ABB2B9';
   if (type.includes('Direktørområde')) nodeColor = '#fc5cff';
   if (type.includes('Enhetsområde')) nodeColor = '#00D1D1';
   return nodeColor;
 };
 export const updateColorKPI = (type: string, toggle: boolean) => {
   let nodeColor = changeColorBasedOnType(type);
-  console.log('updatecolor', toggle);
-  console.log('toggle off');
 
   if (toggle) {
-    console.log('toggle on');
     if (type.includes('SDG')) nodeColor = '#00BB00';
   }
   // else {
