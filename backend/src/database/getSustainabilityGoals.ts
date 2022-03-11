@@ -1,8 +1,8 @@
 import DB from './index';
-import { Node } from '../types/ontologyTypes';
+import { SustainabilityGoal } from '../types/ontologyTypes';
 import getSustainabilityGoals from './queries/getSustainabilityGoals';
 
-export default async (): Promise<Array<Node>> => {
+export default async (): Promise<Array<SustainabilityGoal>> => {
   const query = getSustainabilityGoals();
   return DB.query(query, { transform: 'toJSON' }).then((resp) => resp.records);
 };

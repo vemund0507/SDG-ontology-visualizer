@@ -38,6 +38,8 @@ export const getSubclasses = async (nodeId: string): Promise<Array<Node>> => {
 export const getSustainabilityGoals = async (): Promise<Array<SustainabilityGoal>> => {
   try {
     const data = await api.GET('ontologies/sustainabilityGoals');
+    console.log(data);
+
     return data;
   } catch (e) {
     console.log(e);

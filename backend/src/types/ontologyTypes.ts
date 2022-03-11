@@ -52,3 +52,10 @@ export type DataPoint = {
   isDummy: boolean;
   dataseries?: string;
 };
+
+export type SustainabilityGoal = {
+  instancesOf: string;
+  label: string;
+  icon: string;
+  type: string;
+};

@@ -6,11 +6,14 @@ export default (): string => {
 
   return `
       ${prefixString}
-      SELECT ?instancesOf ?label ?icon
+      SELECT ?instancesOf ?label ?icon ?type
       WHERE { 
         ?instancesOf  rdf:type SDG:SDG.
         ?instancesOf  rdfs:label  ?label.
         ?instancesOf  schema:icon  ?icon.
+        OPTIONAL { ?instancesOf sesame:directType ?TypeRaw.
+          ?TypeRaw rdfs:label ?type}
+
           FILTER NOT EXISTS { 
            ?instancesOf rdf:type ?c . 
            ?c rdfs:subClassOf + SDG:SDG.

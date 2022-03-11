@@ -22,9 +22,7 @@ export const removeDuplicates = <T extends UniqueObject>(
 ): boolean => index === self.findIndex((n) => node.id === n.id);
 
 export const removeUndefinedTypes = <H extends GraphNode>(node: H): boolean => {
-  console.log(node.type);
-  // console.log(node);
-  return !node.type.includes('SDGTargetCorrelation');
+  return node.type !== undefined && node.type !== null;
 };
 
 export const mergeParallelEdges = (

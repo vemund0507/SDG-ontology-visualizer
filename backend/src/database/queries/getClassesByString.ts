@@ -6,12 +6,14 @@ export default (searchTerm: string, limitResults?: number): string => {
 
   return `
     ${prefixes}
-    SELECT DISTINCT ?Subject ?SubjectLabel
+    SELECT DISTINCT ?Subject ?SubjectLabel ?TypeLabel
     WHERE { 
         {
           ?Subject rdfs:label ?o .
           FILTER regex(?o, "${searchTerm}", "i") .
           OPTIONAL {?Subject rdfs:label ?SubjectLabel}
+          OPTIONAL { ?Subject sesame:directType ?TypeRaw.
+            ?TypeRaw rdfs:label ?TypeLabel}
         }
         UNION
         {
