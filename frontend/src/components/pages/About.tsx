@@ -27,7 +27,7 @@ const About = () => (
         en batcheloroppgave i informatikk.
       </Text>
       <Link
-        href="https://github.com/TDT4290-SDG-Ontology/SDG-ontology-visualizer/"
+        href="https://github.com/vemund0507/SDG-ontology-visualizer"
         isExternal
         color="white"
         _hover={{ opacity: '75%' }}
