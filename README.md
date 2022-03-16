@@ -10,6 +10,35 @@ A tool for visualizing ontologies related to UN's sustainable development goals
 
 For installation, see the [installation guide](https://github.com/TDT4290-SDG-Ontology/SDG-ontology-visualizer/blob/main/docs/installation_guide.pdf) extracted from the project report.
 
+## Import Ontology to graphdb
+Without docker, run ``yarn start`` in the backend and go to url: _localhost:7200_
+
+If prompted with a login page: Log in with details provided in _.env_ file in the backend folder
+
+
+![image](https://user-images.githubusercontent.com/49310062/158582048-8a89a2ad-885d-430f-b86c-f053e814f09a.png)
+
+### With GraphDB Standard Edition
+1. Delete existing reposotory under: _Setup > Repositories_
+2. Add a new repository **WITH** the arrow down button (.ttl file): _backend > database > conf_
+3. Follow the rest of GraphDB Free Edition guide
+
+### GraphDB Free Edition
+1. Navigate to: _Import > RDF_
+2. Delete existing .owl file (if it exists)
+3. click **Upload RDF files** and choose .owl file: _backend > database > ontology_
+4. Press **Import!**
+
+
+<img width="1342" alt="image" src="https://user-images.githubusercontent.com/49310062/158583009-e681aeeb-33bd-41cb-bce1-82dedb470640.png">
+
+#### With Docker
+If running with docker: 
+1. Run ``python3 datagen.py`` in _utils_ folder to update with new data from the ontology after the guide above
+
+
+<img width="273" alt="deployment" src="https://user-images.githubusercontent.com/49310062/158583971-f61918a8-814c-438d-9fda-5be537eb72bb.png">
+
 ## What's new
 ### Implemented the KPIs from U4SSC
 The KPIs are divided into categories from the Triple Bottom Line (economy, enviornment and Social and Culture). This categorization is gathered from an [Air Table](https://airtable.com/shrOJwrkPQcvh6fwH/tbl2SCZziDsDG3OtY/viwqaW4EmdIt3XuY7?blocks=bip7r642UcxGlTTS0).
