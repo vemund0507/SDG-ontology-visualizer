@@ -77,7 +77,7 @@ export const changeColorBasedOnType = (type: string) => {
   // in order for the following line to work, nodes need accept being of multiple types.
   // ----------------------------------------------------------------
   // if (type.includes('U4SSC KPI') && type.includes('Utviklingsområde')) nodeColor = '#ABB2B9';
-  if (type.includes('Direktørområde')) nodeColor = '#fc5cff';
+  if (type.includes('Direktørområde')) nodeColor = '#03dffc';
   if (type.includes('Enhetsområde')) nodeColor = '#00D1D1';
   return nodeColor;
 };
