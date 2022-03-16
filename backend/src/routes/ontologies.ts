@@ -18,6 +18,7 @@ import {
   NodeArrayResponse,
   OntologyArrayResponse,
   RegexRequest,
+  SustainbilityGoalArrayResponse,
 } from '../types/routerTypes';
 import onError from './middleware/onError';
 import verifyDatabaseAccess from './middleware/verifyDatabaseAccess';
@@ -51,7 +52,10 @@ const getAnnotationsFromClass = async (req: ClassIdRequest, res: AnnotationRespo
   }
 };
 
-const getSustainabilityGoalsFromOntology = async (req: EmptyRequest, res: NodeArrayResponse) => {
+const getSustainabilityGoalsFromOntology = async (
+  req: EmptyRequest,
+  res: SustainbilityGoalArrayResponse,
+) => {
   try {
     const data = await getSustainabilityGoals();
     res.json(data);

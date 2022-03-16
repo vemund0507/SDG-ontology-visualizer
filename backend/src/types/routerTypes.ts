@@ -13,7 +13,7 @@
  */
 
 import { Request, Response } from 'express';
-import { Annotation, Node, Ontology, DataPoint } from './ontologyTypes';
+import { Annotation, Node, Ontology, DataPoint, SustainabilityGoal } from './ontologyTypes';
 
 type RegexQueryParams = {
   search?: string;
@@ -42,6 +42,8 @@ export type ClassIdRequest = Request<ClassIdParams>;
 export type DataSeriesRequest = Request<DataSeriesParams>;
 
 export type NodeArrayResponse = Response<Array<Node>>;
+
+export type SustainbilityGoalArrayResponse = Response<Array<SustainabilityGoal>>;
 
 export type OntologyArrayResponse = Response<Array<Ontology>>;
 

@@ -64,6 +64,7 @@ export const mapSustainabilityGoalToNode = (sdg: SustainabilityGoal): Node | nul
   const node = mapIdToNode(sdg.instancesOf);
   if (!node) return null;
   node.name = sdg.label;
+  node.type = sdg.type;
   return node;
 };
 

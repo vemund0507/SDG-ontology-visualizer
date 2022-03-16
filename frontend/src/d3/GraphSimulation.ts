@@ -166,10 +166,12 @@ export default class {
 
   addData = (ontologies: Array<Ontology>, clickedNode: GraphNode) => {
     if (ontologies.length === 0 || !clickedNode) return;
+    console.log(clickedNode);
 
     this.unfilteredNodes = this.unfilteredNodes
       .concat(ontologies.map(common.mapOntologyToNonClickedGraphNode(clickedNode)))
       .filter(common.removeDuplicates)
+      .filter(common.removeUndefinedTypes)
       .map(common.mapNodeToGraphNodeAtDefaultPosition(clickedNode.x, clickedNode.y));
 
     this.unfilteredEdges = this.unfilteredEdges
@@ -235,7 +237,6 @@ export default class {
     this.drawEdges();
     this.drawNodes();
     // this.toggleKPIAttainedGoals(this.kpiToggle);
-    console.log('draw graph');
 
     this.scaleGraph();
 
@@ -373,7 +374,6 @@ export default class {
 
   toggleKPIAttainedGoals = (toggle: boolean) => {
     this.kpiToggle = toggle;
-    console.log('toggle func', toggle);
 
     // this.drawNodes();
     this.redrawGraphWithFilter();
@@ -453,7 +453,6 @@ export default class {
                 .attr('dominant-baseline', 'mathematical');
             }
           });
-        console.log('draw nodes');
 
         return g;
       })
@@ -559,7 +558,6 @@ export default class {
     this.removeDisconnectedEdges();
     this.resetForceSimulation();
     this.drawGraph();
-    console.log('redraw');
   };
 
   // ############################################

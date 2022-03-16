@@ -10,6 +10,7 @@ export type SustainabilityGoal = {
   instancesOf: string;
   label: string;
   icon: string;
+  type: string;
 };
 
 export interface SubGoal extends Node {

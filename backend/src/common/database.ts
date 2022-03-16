@@ -96,6 +96,9 @@ export const mapRecordToObject = (record: Record): Node | null => {
   if (object && record.ObjectLabel) {
     object = { ...object, name: record.ObjectLabel };
   }
+  if (object && record.TypeLabel) {
+    object = { ...object, type: record.TypeLabel };
+  }
   return object;
 };
 
@@ -103,6 +106,9 @@ export const mapRecordToSubject = (record: Record): Node | null => {
   let subject = record.Subject ? mapIdToNode(record.Subject) : null;
   if (subject && record.SubjectLabel) {
     subject = { ...subject, name: record.SubjectLabel };
+  }
+  if (subject && record.TypeLabel) {
+    subject = { ...subject, type: record.TypeLabel };
   }
   return subject;
 };
