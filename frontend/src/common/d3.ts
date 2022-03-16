@@ -21,9 +21,8 @@ export const removeDuplicates = <T extends UniqueObject>(
   self: T[],
 ): boolean => index === self.findIndex((n) => node.id === n.id);
 
-export const removeUndefinedTypes = <H extends GraphNode>(node: H): boolean => {
-  return node.type !== undefined && node.type !== null;
-};
+export const removeUndefinedTypes = <H extends GraphNode>(node: H): boolean =>
+  node.type !== 'undefined' && node.type !== null;
 
 export const mergeParallelEdges = (
   edge: GraphEdge | D3Edge,
@@ -74,7 +73,9 @@ export const changeColorBasedOnType = (type: string) => {
   if (type.includes('Utviklingsområde')) nodeColor = '#FC8181';
   if (type.includes('Kategori')) nodeColor = '#00BB00';
   if (type.includes('U4SSC KPI')) nodeColor = '#F4A460';
+  // ----------------------------------------------------------------
   // in order for the following line to work, nodes need accept being of multiple types.
+  // ----------------------------------------------------------------
   // if (type.includes('U4SSC KPI') && type.includes('Utviklingsområde')) nodeColor = '#ABB2B9';
   if (type.includes('Direktørområde')) nodeColor = '#fc5cff';
   if (type.includes('Enhetsområde')) nodeColor = '#00D1D1';
