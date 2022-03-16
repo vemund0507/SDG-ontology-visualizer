@@ -166,7 +166,6 @@ export default class {
 
   addData = (ontologies: Array<Ontology>, clickedNode: GraphNode) => {
     if (ontologies.length === 0 || !clickedNode) return;
-    console.log(clickedNode);
 
     this.unfilteredNodes = this.unfilteredNodes
       .concat(ontologies.map(common.mapOntologyToNonClickedGraphNode(clickedNode)))
