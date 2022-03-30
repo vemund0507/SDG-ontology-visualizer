@@ -18,6 +18,7 @@ type GraphProps = {
   kpiToggle: boolean;
   unlockAllNodes: boolean;
   edgeLabelsVisible: boolean;
+  filterKPISetSelection: GraphNodeFilter;
 };
 
 const Graph: React.FC<GraphProps> = ({
@@ -26,6 +27,7 @@ const Graph: React.FC<GraphProps> = ({
   unlockAllNodes,
   edgeLabelsVisible,
   kpiToggle,
+  filterKPISetSelection,
 }: GraphProps) => {
   const { height, width } = useWindowDimensions();
   const svgRef = useRef<SVGSVGElement>(null);
@@ -63,6 +65,7 @@ const Graph: React.FC<GraphProps> = ({
         onSelectNode,
         nodeFilter,
         edgeFilter,
+        filterKPISetSelection,
       ),
     );
   };
@@ -92,6 +95,10 @@ const Graph: React.FC<GraphProps> = ({
       simulation.setEdgeFilter(edgeFilter);
     }
   }, [nodeFilter, edgeFilter]);
+
+  useEffect(() => {
+    if (simulation) simulation.setFilterKPISetSelection(filterKPISetSelection);
+  }, [filterKPISetSelection]);
 
   useEffect(() => {
     if (simulation) simulation.unlockAllNodes();

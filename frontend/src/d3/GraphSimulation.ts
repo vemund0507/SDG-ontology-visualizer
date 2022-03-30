@@ -73,6 +73,7 @@ export default class {
   private unfilteredEdges: Array<D3Edge | GraphEdge>;
   private scale: number = 1;
   private nodeFilter: GraphNodeFilter;
+  private filterKPISetSelection: GraphNodeFilter;
   private frameIndex = 0;
   private readonly fpsCounter: FpsCounter;
   private edgeFilter: GraphEdgeFilter;
@@ -89,6 +90,7 @@ export default class {
     onSelectNode: (node: GraphNode) => void,
     nodeFilter: GraphNodeFilter,
     edgeFilter: GraphEdgeFilter,
+    filterKPISetSelection: GraphNodeFilter,
   ) {
     this.svg = d3.select(svg).on('click', this.hideNodeMenu);
     this.edgeSvg = this.svg.append('g');
@@ -103,6 +105,7 @@ export default class {
     this.onSelectNode = onSelectNode;
     this.nodeFilter = nodeFilter;
     this.edgeFilter = edgeFilter;
+    this.filterKPISetSelection = filterKPISetSelection;
     this.initZoom();
     this.forceSimulation = this.initForceSimulation();
     this.fpsCounter = new FpsCounter();
@@ -220,6 +223,11 @@ export default class {
 
   setNodeFilter = (filter: GraphNodeFilter) => {
     this.nodeFilter = filter;
+    this.redrawGraphWithFilter();
+  };
+
+  setFilterKPISetSelection = (filter: GraphNodeFilter) => {
+    this.filterKPISetSelection = filter;
     this.redrawGraphWithFilter();
   };
 
@@ -551,8 +559,9 @@ export default class {
   };
 
   private redrawGraphWithFilter = () => {
-    this.nodes = this.unfilteredNodes.filter(this.nodeFilter);
+    this.nodes = this.unfilteredNodes.filter(this.nodeFilter).filter(this.filterKPISetSelection);
     this.edges = this.unfilteredEdges.filter(this.edgeFilter);
+
     this.removeDisconnectedNodes();
     this.removeDisconnectedEdges();
     this.resetForceSimulation();

@@ -108,6 +108,9 @@ export const mapCorrelationToColor = (correlation: number) => {
 
 export const isSubgoal = (node: GraphNode): boolean => node.type === 'Delmål';
 
+export const isU4sscKPI = (node: GraphNode): boolean => node.type === 'U4SSC KPI';
+export const isOecdKPI = (node: GraphNode): boolean => node.type === 'OECD KPI';
+
 export const isWithinCorrelationLimit = (
   edge: D3Edge | GraphEdge,
   filter: CorrelationFilter,

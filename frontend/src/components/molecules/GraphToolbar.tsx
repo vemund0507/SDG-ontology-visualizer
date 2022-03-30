@@ -12,7 +12,7 @@ type GraphToolBarProps = {
   onUnlockNodes: React.Dispatch<React.SetStateAction<boolean>>;
   onEdgeLabelsVisible: React.Dispatch<React.SetStateAction<boolean>>;
   onKPIAttainedGoals: React.Dispatch<React.SetStateAction<boolean>>;
-  // onKPIFilter: () => void;
+  onKPIFilter: () => void;
 };
 
 const GraphToolBar: React.FC<GraphToolBarProps> = ({
@@ -20,8 +20,8 @@ const GraphToolBar: React.FC<GraphToolBarProps> = ({
   onUnlockNodes,
   onEdgeLabelsVisible,
   onKPIAttainedGoals,
-}: // onKPIFilter,
-GraphToolBarProps) => {
+  onKPIFilter,
+}: GraphToolBarProps) => {
   const { isFullscreen } = useSelector((state: RootState) => state.fullscreenStatus);
 
   return (
@@ -58,7 +58,7 @@ GraphToolBarProps) => {
       <CorrelationDropdown isPositive />
       <CorrelationDropdown isPositive={false} />
 
-      <KpiDropdown />
+      <KpiDropdown onKPIFilter={onKPIFilter} />
       <Button
         color="cyan.700"
         bg="white"

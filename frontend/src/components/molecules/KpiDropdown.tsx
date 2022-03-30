@@ -3,11 +3,11 @@ import { Button, Menu, MenuButton, MenuList, RadioGroup } from '@chakra-ui/react
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import KPIRadioSelection from '../atoms/KPIRadioSelection';
 
-// interface Props {
-//   // isPositive: boolean;
-// }
+interface Props {
+  onKPIFilter: () => void;
+}
 
-const KpiDropdown: React.FC = () => (
+const KpiDropdown: React.FC<Props> = ({ onKPIFilter }: Props) => (
   //   const dispatch = useDispatch();
   //  const [value, setValue] = React.useState('1');
 
@@ -24,8 +24,8 @@ const KpiDropdown: React.FC = () => (
     </MenuButton>
     <MenuList bg="cyan.700">
       <RadioGroup defaultValue="1">
-        <KPIRadioSelection value="1" text="U4SSC" />
-        <KPIRadioSelection value="2" text="OECD" />
+        <KPIRadioSelection value="1" onKPIFilter={onKPIFilter} text="U4SSC" />
+        <KPIRadioSelection value="2" onKPIFilter={onKPIFilter} text="OECD" />
       </RadioGroup>
     </MenuList>
   </Menu>
