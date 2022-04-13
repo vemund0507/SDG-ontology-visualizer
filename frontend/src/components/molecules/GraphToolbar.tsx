@@ -2,6 +2,7 @@ import { Button, Checkbox, HStack } from '@chakra-ui/react';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
+import KpiDropdown from './KpiDropdown';
 import SearchBar from '../atoms/SearchBar';
 import ShowDropdown from '../atoms/ShowDropdown';
 import CorrelationDropdown from './CorrelationDropdown';
@@ -11,6 +12,7 @@ type GraphToolBarProps = {
   onUnlockNodes: React.Dispatch<React.SetStateAction<boolean>>;
   onEdgeLabelsVisible: React.Dispatch<React.SetStateAction<boolean>>;
   onKPIAttainedGoals: React.Dispatch<React.SetStateAction<boolean>>;
+  onKPIFilter: () => void;
 };
 
 const GraphToolBar: React.FC<GraphToolBarProps> = ({
@@ -18,6 +20,7 @@ const GraphToolBar: React.FC<GraphToolBarProps> = ({
   onUnlockNodes,
   onEdgeLabelsVisible,
   onKPIAttainedGoals,
+  onKPIFilter,
 }: GraphToolBarProps) => {
   const { isFullscreen } = useSelector((state: RootState) => state.fullscreenStatus);
 
@@ -54,6 +57,8 @@ const GraphToolBar: React.FC<GraphToolBarProps> = ({
       </HStack>
       <CorrelationDropdown isPositive />
       <CorrelationDropdown isPositive={false} />
+
+      <KpiDropdown onKPIFilter={onKPIFilter} />
       <Button
         color="cyan.700"
         bg="white"
