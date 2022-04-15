@@ -12,7 +12,9 @@ type GraphToolBarProps = {
   onUnlockNodes: React.Dispatch<React.SetStateAction<boolean>>;
   onEdgeLabelsVisible: React.Dispatch<React.SetStateAction<boolean>>;
   onKPIAttainedGoals: React.Dispatch<React.SetStateAction<boolean>>;
-  onKPIFilter: () => void;
+  // e: React.ChangeEvent<HTMLInputElement>
+  // handleRadioClick: () => void;
+  // isSelected: (check: string) => boolean;
 };
 
 const GraphToolBar: React.FC<GraphToolBarProps> = ({
@@ -20,8 +22,9 @@ const GraphToolBar: React.FC<GraphToolBarProps> = ({
   onUnlockNodes,
   onEdgeLabelsVisible,
   onKPIAttainedGoals,
-  onKPIFilter,
-}: GraphToolBarProps) => {
+}: // handleRadioClick,
+// isSelected,
+GraphToolBarProps) => {
   const { isFullscreen } = useSelector((state: RootState) => state.fullscreenStatus);
 
   return (
@@ -57,8 +60,8 @@ const GraphToolBar: React.FC<GraphToolBarProps> = ({
       </HStack>
       <CorrelationDropdown isPositive />
       <CorrelationDropdown isPositive={false} />
-
-      <KpiDropdown onKPIFilter={onKPIFilter} />
+      {/* isSelected={isSelected} handleRadioClick={handleRadioClick} */}
+      <KpiDropdown />
       <Button
         color="cyan.700"
         bg="white"
