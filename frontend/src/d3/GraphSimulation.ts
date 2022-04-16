@@ -243,7 +243,6 @@ export default class {
   private drawGraph = () => {
     this.drawEdges();
     this.drawNodes();
-    // this.toggleKPIAttainedGoals(this.kpiToggle);
 
     this.scaleGraph();
 
@@ -361,18 +360,6 @@ export default class {
       this.nodeMenu = undefined;
     }
   };
-
-  // private updateKPIToggle = () => {
-  //   if (this.kpiToggle) {
-  //     this.nodeSvg
-  //       .selectAll(nodeClassName)
-  //       .data(this.nodes)
-  //       .attr('fill', (node) => common.updateColorKPI(node.type, this.kpiToggle));
-  //     console.log('Toggle on');
-  //     console.log(this.nodeSvg);
-  //   } else console.log('Toggle off');
-  //   return this.nodeSvg;
-  // };
 
   toggleEdgeLabelsVisibility = (toggle: boolean) => {
     this.edgeLabelsVisible = toggle;

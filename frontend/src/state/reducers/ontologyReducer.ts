@@ -26,11 +26,9 @@ const createNewCorrelationFilter = (
   return newFilter;
 };
 
+// add new 'else if' condition when implementing new kpi set
 const createNewKpiFilter = (current: KpiFilter, payload: SetKpiFilterPayload) => {
   const newFilter = current;
-  console.log(newFilter, 'test before filter');
-  console.log('payload', payload.index);
-
   if (payload.index === '1') {
     newFilter.u4ssc = true;
     newFilter.oecd = false;
@@ -38,7 +36,6 @@ const createNewKpiFilter = (current: KpiFilter, payload: SetKpiFilterPayload) =>
     newFilter.oecd = true;
     newFilter.u4ssc = false;
   }
-  console.log(newFilter, 'test after filter');
   return newFilter;
 };
 

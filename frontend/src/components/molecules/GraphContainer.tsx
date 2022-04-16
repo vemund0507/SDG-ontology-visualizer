@@ -1,13 +1,7 @@
 import { Flex, Stack } from '@chakra-ui/react';
 import React, { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
-import {
-  isKpiSelected,
-  // isOecdKPI,
-  isSubgoal,
-  // isU4sscKPI,
-  isWithinCorrelationLimit,
-} from '../../common/node';
+import { isKpiSelected, isSubgoal, isWithinCorrelationLimit } from '../../common/node';
 import { RootState } from '../../state/store';
 import { D3Edge } from '../../types/d3/simulation';
 import { GraphEdge, GraphNode } from '../../types/ontologyTypes';
@@ -20,8 +14,6 @@ const GraphContainer: React.FC = () => {
   const [showSubgoals, setShowSubgoals] = useState<boolean>(false);
   const [unlockNodes, setUnlockNodes] = useState<boolean>(false);
   const [edgeLabelsVisible, setEdgeLabelsVisible] = useState<boolean>(true);
-  const [kpiAttainedToggle, setKPIAttained] = useState<boolean>(false);
-  // const [selectedRadioBtn] = React.useState('1');
   const { isFullscreen } = useSelector((state: RootState) => state.fullscreenStatus);
   const { correlationFilter } = useSelector((state: RootState) => state.ontology);
   const { kpiFilter } = useSelector((state: RootState) => state.ontology);
@@ -32,12 +24,7 @@ const GraphContainer: React.FC = () => {
 
   const filterKPISetSelection = useCallback(
     (node: GraphNode): boolean => {
-      // if (selectedRadioBtn === '2') console.log('test');
-
-      if (isKpiSelected(node, kpiFilter)) {
-        console.log('Selected radio');
-        return false;
-      }
+      if (isKpiSelected(node, kpiFilter)) return false;
       return true;
     },
     [kpiFilter.u4ssc, kpiFilter.oecd],
@@ -77,16 +64,11 @@ const GraphContainer: React.FC = () => {
         onSubgoalFilter={filterSubgoals}
         onUnlockNodes={setUnlockNodes}
         onEdgeLabelsVisible={setEdgeLabelsVisible}
-        onKPIAttainedGoals={setKPIAttained}
-        // handleRadioClick={handleRadioClick}
-        // isSelected={isRadioSelected}
-        // onKPIFilter={setKPIFilter}
       />
       <Flex h="100%" justify="space-between">
         <Graph
           nodeFilter={nodeFilter}
           edgeFilter={edgeFilter}
-          kpiToggle={kpiAttainedToggle}
           unlockAllNodes={unlockNodes}
           edgeLabelsVisible={edgeLabelsVisible}
           filterKPISetSelection={filterKPISetSelection}
