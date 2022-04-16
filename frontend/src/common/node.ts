@@ -6,6 +6,7 @@ import {
   Prefix,
   SustainabilityGoal,
   CorrelationFilter,
+  KpiFilter,
 } from '../types/ontologyTypes';
 import { D3Edge } from '../types/d3/simulation';
 
@@ -108,8 +109,11 @@ export const mapCorrelationToColor = (correlation: number) => {
 
 export const isSubgoal = (node: GraphNode): boolean => node.type === 'Delmål';
 
-export const isU4sscKPI = (node: GraphNode): boolean => node.type === 'U4SSC KPI';
-export const isOecdKPI = (node: GraphNode): boolean => node.type === 'OECD KPI';
+export const isKpiSelected = (node: GraphNode, filter: KpiFilter): boolean => {
+  if (node.type === 'U4SSC KPI' && !filter.u4ssc) return true;
+  if (node.type === 'OECD KPI' && !filter.oecd) return true;
+  return false;
+};
 
 export const isWithinCorrelationLimit = (
   edge: D3Edge | GraphEdge,

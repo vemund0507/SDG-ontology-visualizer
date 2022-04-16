@@ -15,7 +15,7 @@ import { GraphNode } from '../../types/ontologyTypes';
 type GraphProps = {
   nodeFilter: GraphNodeFilter;
   edgeFilter: GraphEdgeFilter;
-  kpiToggle: boolean;
+
   unlockAllNodes: boolean;
   edgeLabelsVisible: boolean;
   filterKPISetSelection: GraphNodeFilter;
@@ -26,7 +26,7 @@ const Graph: React.FC<GraphProps> = ({
   edgeFilter,
   unlockAllNodes,
   edgeLabelsVisible,
-  kpiToggle,
+
   filterKPISetSelection,
 }: GraphProps) => {
   const { height, width } = useWindowDimensions();
@@ -107,10 +107,6 @@ const Graph: React.FC<GraphProps> = ({
   useEffect(() => {
     if (simulation) simulation.toggleEdgeLabelsVisibility(edgeLabelsVisible);
   }, [edgeLabelsVisible]);
-
-  useEffect(() => {
-    if (simulation) simulation.toggleKPIAttainedGoals(kpiToggle);
-  }, [kpiToggle]);
 
   return (
     <Box

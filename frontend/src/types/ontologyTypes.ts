@@ -69,3 +69,8 @@ export type CorrelationFilter = {
   nMedium: boolean;
   nHigh: boolean;
 };
+
+export type KpiFilter = {
+  u4ssc: boolean;
+  oecd: boolean;
+};
