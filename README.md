@@ -39,6 +39,12 @@ If running with docker:
 
 <img width="273" alt="deployment" src="https://user-images.githubusercontent.com/49310062/158583971-f61918a8-814c-438d-9fda-5be537eb72bb.png">
 
+## Ontology
+### Work Environment
+- If the node in the ontology is of none or multiple types, the individual will not be displayed in the graph.
+- Every node needs a label in order to be displaed in the graph.
+  - If the label contains a perentences symbol there will be an error when clicking the node.
+
 ## What's new
 ### Implemented the KPIs from U4SSC
 The KPIs are divided into categories from the Triple Bottom Line (economy, enviornment and Social and Culture). This categorization is gathered from an [Air Table](https://airtable.com/shrOJwrkPQcvh6fwH/tbl2SCZziDsDG3OtY/viwqaW4EmdIt3XuY7?blocks=bip7r642UcxGlTTS0).
@@ -64,6 +70,3 @@ Algorithm.
 ## Future Work (techical)
 ### Change the code so that a node be be of several types 
 By doing this, we avoid duplicates of instances within the ontology e.g., Transport can be of type *Utviklingsområde* and *Kategori*. However now there exist two of them, though with different name. 
-
-### Filter out datapoints and correlation points within the graph. 
-These are used for the GDC part. However the graph accepts everything from the ontology and it should be filtered. 
