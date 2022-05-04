@@ -1,6 +1,6 @@
 # SDG Ontology Visualizer
 
-A tool for visualizing ontologies related to UN's sustainable development goals
+A tool for visualizing ontologies related to UN's Sustainable Development Goals
 
 [![CI](https://github.com/TDT4290-SDG-Ontology/SDG-ontology-visualizer/actions/workflows/main.yml/badge.svg)](https://github.com/TDT4290-SDG-Ontology/SDG-ontology-visualizer/actions/workflows/main.yml)
 
@@ -18,9 +18,9 @@ The guide contains:
 Run: ``yarn`` in both _/backend_ and _/frontend_ to install dependencies
 
 Local development is possible both with and without Docker.
-- Without docker: Run ``yarn start`` in the _/backend_ and go to url: _localhost:7200_
+- Without Docker: Run ``yarn start`` in the _/backend_ and go to url: _localhost:7200_
   - If prompted with a login page: Log in with details provided in _.env_ file in the _/backend_ folder. If the file is missing, follow the installation guide, section A.3 Local development.
-  - NOTE: Local changes still needs to be deployed with Docker for the to be deployed website to be updated. 
+  - NOTE: Docker is still required to deploy local changes to the hosted website. 
 - With Docker: Follow the installation guide, section A.3 Local development
   - NOTE: Every time the ontology is updated, the data needs to be updated with the follong command: Run ``python3 datagen.py`` in _/utils_ folder (image below).
     
@@ -33,7 +33,7 @@ You should now see this:
 ![image](https://user-images.githubusercontent.com/49310062/158582048-8a89a2ad-885d-430f-b86c-f053e814f09a.png)
 
 #### GraphDB Standard Edition
-1. Delete existing reposotory under: _Setup > Repositories_
+1. Delete existing repository under: _Setup > Repositories_
 2. Add a new repository **WITH** the arrow down button (.ttl file): _backend > database > conf_
 3. Follow the rest of GraphDB Free Edition guide
 
@@ -51,7 +51,7 @@ You should now see this:
 ### Ontology
 - If the node in the ontology is of none or multiple types, the individual will not be displayed in the graph. This is because the ontology exists of many individuals not needed in the graph.
 - Every node needs a *label* of type *string* in order to be displaed in the graph.
-  - If the label contains a perentences symbol there will be an error when clicking the node.
+  - If the label contains a parentheses symbol there will be an error when clicking the node.
 
 
 
