@@ -73,4 +73,5 @@ export type CorrelationFilter = {
 export type KpiFilter = {
   u4ssc: boolean;
   oecd: boolean;
+  unIndicator: boolean;
 };

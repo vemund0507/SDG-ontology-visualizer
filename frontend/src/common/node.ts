@@ -112,6 +112,7 @@ export const isSubgoal = (node: GraphNode): boolean => node.type === 'Delmål';
 export const isKpiSelected = (node: GraphNode, filter: KpiFilter): boolean => {
   if (node.type === 'U4SSC KPI' && !filter.u4ssc) return true;
   if (node.type === 'OECD KPI' && !filter.oecd) return true;
+  if (node.type === 'Indicador' && !filter.unIndicator) return true;
   return false;
 };
 

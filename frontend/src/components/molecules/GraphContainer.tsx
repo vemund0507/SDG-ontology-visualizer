@@ -27,7 +27,7 @@ const GraphContainer: React.FC = () => {
       if (isKpiSelected(node, kpiFilter)) return false;
       return true;
     },
-    [kpiFilter.u4ssc, kpiFilter.oecd],
+    [kpiFilter.u4ssc, kpiFilter.oecd, kpiFilter.unIndicator],
   );
 
   const nodeFilter = useCallback(

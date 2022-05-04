@@ -65,6 +65,25 @@ const KpiDropdown = () => {
               OECD
             </Radio>
           </MenuItem>
+          <MenuItem
+            color="white"
+            _hover={{
+              bg: 'cyan.500',
+            }}
+          >
+            <Radio
+              width="100%"
+              height="100%"
+              colorScheme="cyan"
+              color="white"
+              size="md"
+              value="3"
+              onChange={handleClick}
+              text="UNINDICATOR"
+            >
+              UN Indicator
+            </Radio>
+          </MenuItem>
         </RadioGroup>
       </MenuList>
     </Menu>

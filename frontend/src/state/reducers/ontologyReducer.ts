@@ -32,9 +32,15 @@ const createNewKpiFilter = (current: KpiFilter, payload: SetKpiFilterPayload) =>
   if (payload.index === '1') {
     newFilter.u4ssc = true;
     newFilter.oecd = false;
+    newFilter.unIndicator = false;
   } else if (payload.index === '2') {
-    newFilter.oecd = true;
     newFilter.u4ssc = false;
+    newFilter.oecd = true;
+    newFilter.unIndicator = false;
+  } else if (payload.index === '3') {
+    newFilter.u4ssc = false;
+    newFilter.oecd = false;
+    newFilter.unIndicator = true;
   }
   return newFilter;
 };
@@ -52,6 +58,7 @@ const defaultState: OntologyState = {
   kpiFilter: {
     u4ssc: true,
     oecd: false,
+    unIndicator: false,
   },
 };
 
