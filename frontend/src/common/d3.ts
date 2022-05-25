@@ -73,11 +73,11 @@ export const changeColorBasedOnType = (type: string) => {
   if (type.includes('Utviklingsområde')) nodeColor = '#FC8181';
   if (type.includes('Kategori')) nodeColor = '#00BB00';
   if (type.includes('U4SSC KPI')) nodeColor = '#F4A460';
-  if (type.includes('OECD KPI')) nodeColor = '#c79200';
+  if (type.includes('OECD KPI')) nodeColor = '#F4A460';
   // The follong 3 line is for UN Indicators
-  if (type.includes('Indicador')) nodeColor = '#e6b45e';
-  if (type.includes('Indicator')) nodeColor = '#e6b45e';
-  if (type.includes('Indicateur')) nodeColor = '#e6b45e';
+  if (type.includes('Indicador')) nodeColor = '#F4A460';
+  if (type.includes('Indicator')) nodeColor = '#F4A460';
+  if (type.includes('Indicateur')) nodeColor = '#F4A460';
 
   // ----------------------------------------------------------------
   // in order for the following line to work, nodes need accept being of multiple types.
