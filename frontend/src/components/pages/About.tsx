@@ -17,14 +17,14 @@ const About = () => (
         Om prosjektet
       </Heading>
       <Text fontSize="md" align="left">
-        Dette er en videreutvikling av en prototype laget for Trondheim kommune. Arbeidet er gjort i
-        forbindelse med faget TDT4290 Kundestyrt prosjekt. Videreutviklingen realiserer
-        funksjonalitet som søker å umiddelbart forbedre verktøyene tilgjengelig for datadrevet
-        bærekraft ved å forbedre visualisering av historisk ytelse samt antatt fremtidig ytelse.
+        Dette er ontologiprototype laget for Trondheim kommune. Utviklingen har vært initiert og
+        styrt av Data Scientist Leendert Wienhofen ansatt i Trondheim kommune. Arbeidet er gjort i
+        forbindelse med IT2901 Bachelorprosjekt samt. faget TDT4290 Kundestyrt prosjekt i 2021.
         <br />
         <br />
-        Videreutviklingen har funnet sted på toppen av en eksisterende prototype utviklet som del av
-        en batcheloroppgave i informatikk.
+        Prosjektet har blitt videreutviklet av Vemund Eggemoen i høst 2021 - vår 2022 som
+        deltidsansatt i Trondheim Kommune. Prototypen har funksjonalitet som viser muligheter for
+        datadrevet bærekraft.
       </Text>
       <Link
         href="https://github.com/vemund0507/SDG-ontology-visualizer"
